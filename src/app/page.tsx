@@ -37,7 +37,7 @@ export default function Landing() {
             <div className="space-y-1">
               <BoxReveal boxColor={"#5046e6"} duration={0.5}>
                 <p className="leading-relaxed text-white text-xl text-left">
-                  Hi, I'm <span className="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-gray-300/80 bg-clip-text text-center font-semibold leading-none text-transparent dark:from-white dark:to-slate-900/10">Abhinay Siraparapu</span>, a passionate developer with a keen interest in
+                  Hi, {"I'm"} <span className="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-gray-300/80 bg-clip-text text-center font-semibold leading-none text-transparent dark:from-white dark:to-slate-900/10">Abhinay Siraparapu</span>, a passionate developer with a keen interest in
                 </p>
               </BoxReveal>
 
@@ -55,7 +55,7 @@ export default function Landing() {
 
               <BoxReveal boxColor={"#5046e6"} duration={0.5}>
                 <p className="leading-relaxed text-white text-xl text-left">
-                  user‑friendly experiences.
+                  {"user‑friendly"} experiences.
                 </p>
               </BoxReveal>
             </div>
