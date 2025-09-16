@@ -5,21 +5,48 @@ import { PixelImage } from "../components/ui/pixel-image"
 import { FiGithub } from "react-icons/fi";
 import { BoxReveal } from "../components/ui/box-reveal";
 import { DotPattern } from '../components/ui/dot-pattern'
+import { useState, useEffect } from 'react'
 
 
 export default function Landing() {
+  const [active, setActive] = useState("home")
+  useEffect(() => {
+    const sections = document.querySelectorAll("section, div[id]");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActive(entry.target.id);
+          }
+        });
+      },
+      { root: null, rootMargin: "0px", threshold: 0.5 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
   return (
     <>
       <nav className='fixed bg-transparent bottom-6 w-full flex justify-center items-center z-50'>
         <div className='text-white backdrop-blur-md flex justify-center items-center gap-3 border border-white/50 py-4 px-6 rounded-4xl hover:scale-105 ease-in duration-180 hover:px-8'>
-          <a href='#' className='font-light hover:font-medium transition-all ease-in-out duration-250 hover:scale-125 hover:text-shadow-2xs shadow-white'>Home</a>
+          {/* <a href='#' className='font-light hover:font-medium transition-all ease-in-out duration-250 hover:scale-125 hover:text-shadow-2xs shadow-white'>Home</a>
           <a href='#' className='font-light hover:font-medium transition-all ease-in-out duration-250 hover:scale-125 hover:text-shadow-2xs shadow-white'>About</a>
           <a href='#' className='font-light hover:font-medium transition-all ease-in-out duration-250 hover:scale-125 hover:text-shadow-2xs shadow-white'>Skills</a>
           <a href='#' className='font-light hover:font-medium transition-all ease-in-out duration-250 hover:scale-125 hover:text-shadow-2xs shadow-white'>Projects</a>
-          <a href='#' className='font-light hover:font-medium transition-all ease-in-out duration-250 hover:scale-125 hover:text-shadow-2xs shadow-white'>Contact Me</a>
+          <a href='#' className='font-light hover:font-medium transition-all ease-in-out duration-250 hover:scale-125 hover:text-shadow-2xs shadow-white'>Contact Me</a> */}
+
+
+          {["home", "about", "skills", "projects", "contact"].map((section) => (
+            <a key={section} href={`#${section}`} className={`font-light transition-all duration-250 ${active === section ? "font-medium text-blue-400 scale-125 shadow-white": "hover:text-shadow-2xs hover:scale-105"}`}>
+              {section.charAt(0).toUpperCase() + section.slice(1)}
+            </a>
+          ))}
           <div><FiGithub size={32} className='font-light hover:font-medium transition-all ease-in-out duration-250 hover:scale-125 hover:cursor-pointer text-white hover:bg-white/15 p-2 rounded-xl ' /></div>
           <div></div>
         </div>
+
       </nav>
 
 
@@ -27,7 +54,7 @@ export default function Landing() {
         <DotPattern height={32} width={32} glow={true} className={cn(
           "[mask-image:radial-gradient(800px_circle_at_center,white,transparent)]",
         )} />
-        <div className="bg-black flex justify-center items-center h-screen">
+        <div id="home" className="bg-black flex justify-center items-center h-screen">
           <Meteors />
           <div className='relative'>
             <h1
@@ -42,7 +69,7 @@ export default function Landing() {
         </div>
       </div>
 
-      <div className='w-full h-screen flex flex-col md:p-8'>
+      <div id="about" className='w-full h-screen flex flex-col md:p-8'>
         <div className='flex  w-full items-center justify-center'><h1 className='text-3xl md:text-6xl font-bold font-stretch-110% my-4'>About Me</h1></div>
         <div className="m-2 md:m-6 md:p-6 flex flex-col md:flex-row items-center justify-center gap-22">
           <div className="flex-shrink-0">
