@@ -3,7 +3,6 @@ import { Meteors } from '../components/ui/meteors'
 import { Home, Settings, Search } from "lucide-react";
 import { FiGithub } from "react-icons/fi";
 
-import { FloatingDock } from '@/components/ui/floating-dock';
 
 export default function Landing() {
   return (
